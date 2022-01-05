@@ -35,10 +35,12 @@ bytecode = compiled_sol["contracts"]["SimpleStorage.sol"]["SimpleStorage"]["evm"
 # Get Abi
 abi = compiled_sol["contracts"]["SimpleStorage.sol"]["SimpleStorage"]["abi"]
 
-# For Connecting to Ganache
-w3 = Web3(Web3.HTTPProvider("http://127.0.0.1:8545"))
-chain_id = 1337
-my_address = "0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1"
+# For Connecting to Rinkeby
+w3 = Web3(
+    Web3.HTTPProvider("https://rinkeby.infura.io/v3/edbaadb6fb5d4364a97b3e48a778f607")
+)
+chain_id = 4
+my_address = "0x73Da0270A9E4C7cb06380dD96E330c2e0319B198"
 private_key = os.getenv("PRIVATE_KEY")
 
 # Create the Contract in Python
@@ -93,5 +95,4 @@ store_tx_hash = w3.eth.send_raw_transaction(store_signed_txn.rawTransaction)
 store_tx_receipt = w3.eth.wait_for_transaction_receipt(store_tx_hash)
 
 print("Updated!")
-
 print(simple_storage.functions.retrieve().call())
