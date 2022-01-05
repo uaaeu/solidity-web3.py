@@ -93,4 +93,5 @@ store_tx_hash = w3.eth.send_raw_transaction(store_signed_txn.rawTransaction)
 store_tx_receipt = w3.eth.wait_for_transaction_receipt(store_tx_hash)
 
 print("Updated!")
+
 print(simple_storage.functions.retrieve().call())
